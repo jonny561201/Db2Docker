@@ -7,3 +7,5 @@ function createImage {
     echo "----------Creating Image----------"
     docker build -t $CONTAINER_NAME $CURRENT_DIR/docker/db2Sql
 }
+
+createImage
