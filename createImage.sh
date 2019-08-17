@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CONTAINER_NAME=db2-server:latest
+source $CURRENT_DIR/variables
 
 function createImage {
     echo "----------Creating Image----------"

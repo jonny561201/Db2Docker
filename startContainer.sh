@@ -1,15 +1,7 @@
 #!/bin/bash
 
-SQL_DOCKER_NAME=Db2Test
-CONTAINER_NAME=db2-server
-INSTANCE_NAME="db2inst1"
-SQL_PASSWORD=password
-SQL_NAME=FAKEDB
-SQL_PORT=50000
-
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-WHITE='\033[0m'
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $CURRENT_DIR/variables
 
 function waitForHealthyContainer {
     if [[ "$(docker inspect -f='{{.State.Status}}' ${SQL_DOCKER_NAME})" = "exited" ]]
