@@ -24,6 +24,17 @@ function dockerFlywayMigration {
     docker run --net=host --rm -v /${WINDOWS_VOLUME}:/flyway/sql ${FLYWAY_NAME} -url="jdbc:db2://localhost:$SQL_PORT/$SQL_NAME" -user=${INSTANCE_NAME} -password=${SQL_PASSWORD} migrate
 }
 
+function validateImagesExists {
+    echo "----------Validating Docker Image----------"
+    DB2_STATE=$(docker images -q ${CONTAINER_NAME})
+    FLYWAY_STATE=$(docker images -q ${FLYWAY_NAME})
+    if [[ -z "$DB2_STATE" ]] || [[ -z "$FLYWAY_STATE" ]]
+    then
+        echo -e "${RED}ERROR: Please execute script file to create containers!!!"
+        exit 1
+    fi
+}
+
 function startContainer {
     echo "----------Starting Up Docker Container----------"
     docker run --privileged=true --name=${SQL_DOCKER_NAME} -d=true -p "$SQL_PORT:$SQL_PORT" \
@@ -36,6 +47,7 @@ function startContainer {
     ${CONTAINER_NAME}
 }
 
+validateImagesExists
 startContainer
 waitForHealthyContainer
 dockerFlywayMigration
