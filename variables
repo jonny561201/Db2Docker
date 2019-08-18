@@ -1,5 +1,5 @@
 SQL_DOCKER_NAME=Db2Test
-CONTAINER_NAME=db2-server:lastest
+CONTAINER_NAME=db2-server:latest
 FLYWAY_NAME=db2-flyway:latest
 INSTANCE_NAME="db2inst1"
 SQL_PASSWORD=password
