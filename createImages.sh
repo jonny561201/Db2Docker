@@ -10,7 +10,7 @@ function createDb2Image {
 
 function createFlywayImage {
     echo "----------Creating Flyway Image----------"
-    docker build -t $FLYWAY_NAME $CURRENT_DIR/docker/flway
+    docker build -t $FLYWAY_NAME $CURRENT_DIR/docker/flyway
 }
 
 createDb2Image
