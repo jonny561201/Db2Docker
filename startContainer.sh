@@ -20,7 +20,6 @@ function dockerFlywayMigration {
     DOCKER_VOLUME=${SCRIPT_DIR}/docker/flyway/db/migration
     WINDOWS_VOLUME=$(echo ${DOCKER_VOLUME} | sed -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/')
     echo "----------Flyway Volume set to: $DOCKER_VOLUME"
-    echo "test windows volume: ${WINDOWS_VOLUME}"
     echo "----------Executing Flyway Migrations----------"
     docker run --net=host --rm -v /${WINDOWS_VOLUME}:/flyway/sql ${FLYWAY_NAME} -url="jdbc:db2://localhost:$SQL_PORT/$SQL_NAME" -user=${INSTANCE_NAME} -password=${SQL_PASSWORD} migrate
 }
